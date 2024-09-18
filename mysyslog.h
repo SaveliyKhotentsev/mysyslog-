@@ -2,9 +2,11 @@
 #define MYSYSLOG_H
 
 // Уровни важности
-#define LOG_INFO 0
-#define LOG_WARNING 1
-#define LOG_ERROR 2
+#define LOG_DEBUG 0
+#define LOG_INFO 1
+#define LOG_WARNING 2
+#define LOG_ERROR 3
+#define LOG_CRITICAL 4
 
 // Драйверы вывода
 #define DRIVER_CONSOLE 0
