@@ -46,6 +46,9 @@ int mysyslog(const char* msg, int level, int driver, int format, const char* pat
 
     // Определение уровня важности
     switch (level) {
+        case LOG_DEBUG:
+            level_str = "DEBUG";
+            break;
         case LOG_INFO:
             level_str = "INFO";
             break;
@@ -54,6 +57,9 @@ int mysyslog(const char* msg, int level, int driver, int format, const char* pat
             break;
         case LOG_ERROR:
             level_str = "ERROR";
+            break;
+        case LOG_CRITICAL:
+            level_str = "CRITICAL";
             break;
         default:
             level_str = "UNKNOWN";
