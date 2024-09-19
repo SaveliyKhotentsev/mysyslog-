@@ -1,27 +1,10 @@
+#include "libmysyslog.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
-#ifndef MYSYSLOG_H
-#define MYSYSLOG_H
-
-// Уровни важности
-#define LOG_DEBUG 0
-#define LOG_INFO 1
-#define LOG_WARNING 2
-#define LOG_ERROR 3
-#define LOG_CRITICAL 4
-
-// Драйверы вывода
-#define DRIVER_CONSOLE 0
-#define DRIVER_FILE 1
-
-// Форматы вывода
-#define FORMAT_PLAIN 0
-#define FORMAT_WITH_TIMESTAMP 1
-
-// Функция для вывода сообщения в журнал
+// Вспомогательная функция для получения текущего времени в виде строки
 static const char* get_current_time() {
     static char buffer[20];
     time_t now = time(NULL);
@@ -95,13 +78,10 @@ int mysyslog(const char* msg, int level, int driver, int format, const char* pat
             return -1; // Неизвестный драйвер
     }
 }
-
-int main() {
-    // Вывод сообщения в журнал в текстовом формате на стандартный вывод
-    mysyslog("Привет, мир!", MYSYSLOG_INFO, MYSYSLOG_STDOUT, MYSYSLOG_TEXT, NULL);
-
-    // Вывод сообщения в журнал в JSON-формате в файл
-    mysyslog("Это JSON-сообщение", MYSYSLOG_INFO, MYSYSLOG_FILE, MYSYSLOG_JSON, "log.json");
-
-    return 0;
-}
+Изменения:
+Добавлены уровни:
+LOG_DEBUG: для сообщений отладки.
+LOG_CRITICAL: для сообщений, сигнализирующих о критической ситуации.
+В обновлённой функции mysyslog() теперь есть обработка всех уровней логирования, включая DEBUG и CRITICAL.
+Пример использования
+c
