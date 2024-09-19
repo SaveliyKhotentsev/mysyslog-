@@ -1,21 +1,19 @@
 #ifndef LIBMYSYSLOG_H
 #define LIBMYSYSLOG_H
-// Уровни важности
-#define LOG_DEBUG 0
-#define LOG_INFO 1
-#define LOG_WARNING 2
-#define LOG_ERROR 3
-#define LOG_CRITICAL 4
 
-// Драйверы вывода
-#define DRIVER_CONSOLE 0
-#define DRIVER_FILE 1
+enum LogLevel {
+    DEBUG,
+    INFO,
+    WARN,
+    ERROR,
+    CRITICAL
+};
 
-// Форматы вывода
-#define FORMAT_PLAIN 0
-#define FORMAT_WITH_TIMESTAMP 1
+enum LogDriver {
+    TEXT_DRIVER,
+    JSON_DRIVER
+};
 
-// Функция для вывода сообщения в журнал
 int mysyslog(const char* msg, int level, int driver, int format, const char* path);
 
-#endif // MYSYSLOG_H
+#endif // LIBMYSYSLOG_H
